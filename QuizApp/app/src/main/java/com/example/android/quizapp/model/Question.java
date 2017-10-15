@@ -39,4 +39,13 @@ public class Question {
     public void setAnswerIndex(int answerIndex) {
         mAnswerIndex = answerIndex;
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "mQuestion='" + mQuestion + '\'' +
+                ", mChoiceList=" + mChoiceList +
+                ", mAnswerIndex=" + mAnswerIndex +
+                '}';
+    }
 }
