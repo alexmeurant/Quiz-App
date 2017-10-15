@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.android.quizapp.R;
+import com.example.android.quizapp.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         TextView mWelcomeTextView = (TextView) findViewById(R.id.WelcomeTextView);
         final EditText mNameInput = (EditText) findViewById(R.id.NameInput);
         final Button mPlayButton = (Button) findViewById(R.id.PlayButton);
+        final User mUser = new User();
 
         // Play button is not enabled till player does not write his name:
         mPlayButton.setEnabled(false);
@@ -50,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
                 startActivity(gameActivityIntent);
+
+                String userName = mNameInput.getText().toString();
+                mUser.setUserName(userName);
             }
         });
     }
