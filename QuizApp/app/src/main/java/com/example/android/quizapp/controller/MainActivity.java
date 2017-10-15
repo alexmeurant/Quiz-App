@@ -1,4 +1,4 @@
-package com.example.android.quizapp;
+package com.example.android.quizapp.controller;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import static android.R.attr.editable;
+import com.example.android.quizapp.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -7,10 +7,10 @@
     android:layout_height="match_parent"
     android:background="#efefef"
     android:orientation="vertical"
-    tools:context="com.example.android.quizapp.GameActivity">
+    tools:context="com.example.android.quizapp.controller.GameActivity">
 
     <TextView
-        android:id="@+id/Question"
+        android:id="@+id/QuestionView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="4"
@@ -21,7 +21,7 @@
         android:textStyle="bold"/>
 
     <Button
-        android:id="@+id/Answer1"
+        android:id="@+id/Answer1View"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -35,7 +35,7 @@
         android:translationZ="0dp"/>
 
     <Button
-        android:id="@+id/Answer2"
+        android:id="@+id/Answer2View"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -48,7 +48,7 @@
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/Answer3"
+        android:id="@+id/Answer3View"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -59,7 +59,7 @@
         android:textSize="20sp"/>
 
     <Button
-        android:id="@+id/Answer4"
+        android:id="@+id/Answer4View"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
