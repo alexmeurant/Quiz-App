@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:attr/textColorTertiaryInverse"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context="com.example.android.quizapp.GameActivity">
+
+    <TextView
+        android:id="@+id/Question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Question"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/Answer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/background_light"
+        android:text="Answer1"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/Answer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/background_light"
+        android:text="Answer2"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/Answer3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/background_light"
+        android:text="Answer3"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/Answer4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@android:color/background_light"
+        android:text="Answer4"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"/>
+
+</LinearLayout>
