@@ -1,10 +1,12 @@
 package com.example.android.quizapp.controller;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.quizapp.R;
 import com.example.android.quizapp.model.Question;
@@ -12,7 +14,9 @@ import com.example.android.quizapp.model.QuestionBank;
 
 import java.util.Arrays;
 
-public class GameActivity extends AppCompatActivity {
+import static android.os.Build.VERSION_CODES.M;
+
+public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView mQuestionView;
     private Button mAnswer1View;
@@ -43,34 +47,28 @@ public class GameActivity extends AppCompatActivity {
         mAnswer3View.setTag(2);
         mAnswer4View.setTag(3);
 
-        mAnswer1View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        mAnswer2View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        mAnswer3View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        mAnswer4View.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        // Use the same listener for the four buttons.
+        // The tag value will be used to distinguish the button triggered
+        mAnswer1View.setOnClickListener(this);
+        mAnswer2View.setOnClickListener(this);
+        mAnswer3View.setOnClickListener(this);
+        mAnswer4View.setOnClickListener(this);
 
         mCurrentQuestion = mQuestionBank.getQuestion();
         this.displayQuestion(mCurrentQuestion);
+    }
 
+    // Check correct or wrong answer:
+    @Override
+    public void onClick(View view) {
+        int goodAnswer = mCurrentQuestion.getAnswerIndex();
+        int responseIndex = (int) view.getTag();
+
+        if (responseIndex == goodAnswer) {
+            Toast.makeText(GameActivity.this, "Correct", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(GameActivity.this, "Wrong answer", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void displayQuestion(final Question question) {
