@@ -3,6 +3,7 @@ package com.example.android.quizapp.controller;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +14,8 @@ import com.example.android.quizapp.model.Question;
 import com.example.android.quizapp.model.QuestionBank;
 
 import java.util.Arrays;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import static android.os.Build.VERSION_CODES.M;
 
@@ -76,13 +79,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(GameActivity.this, "Wrong answer", Toast.LENGTH_SHORT).show();
         }
 
-        // Display another question:
-        if (mNumberOfQuestions >= 1){
-            mCurrentQuestion = mQuestionBank.getQuestion();
-            this.displayQuestion(mCurrentQuestion);
-        } else {
-            finish();
-        }
+        view.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Display another question:
+                if (mNumberOfQuestions >= 1){
+                    mCurrentQuestion = mQuestionBank.getQuestion();
+                    displayQuestion(mCurrentQuestion);
+                } else {
+                    finish();
+                }
+            }
+        }, 2000);
     }
 
     private void displayQuestion(final Question question) {
