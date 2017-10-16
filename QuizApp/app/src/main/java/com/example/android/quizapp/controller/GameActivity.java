@@ -27,12 +27,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private QuestionBank mQuestionBank;
     private Question mCurrentQuestion;
 
+    private int mNumberOfQuestions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
         mQuestionBank = this.generateQuestions();
+
+        mNumberOfQuestions = 9;
 
         // Wire widgets
         mQuestionView = (TextView) findViewById(R.id.QuestionView);
@@ -58,16 +62,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         this.displayQuestion(mCurrentQuestion);
     }
 
-    // Check correct or wrong answer:
     @Override
     public void onClick(View view) {
         int goodAnswer = mCurrentQuestion.getAnswerIndex();
         int responseIndex = (int) view.getTag();
 
+        mNumberOfQuestions--;
+
+        // Check correct or wrong answer:
         if (responseIndex == goodAnswer) {
             Toast.makeText(GameActivity.this, "Correct", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(GameActivity.this, "Wrong answer", Toast.LENGTH_SHORT).show();
+        }
+
+        // Display another question:
+        if (mNumberOfQuestions >= 1){
+            mCurrentQuestion = mQuestionBank.getQuestion();
+            this.displayQuestion(mCurrentQuestion);
+        } else {
+            finish();
         }
     }
 

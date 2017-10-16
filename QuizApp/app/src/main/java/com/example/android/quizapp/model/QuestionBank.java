@@ -11,7 +11,6 @@ public class QuestionBank {
     private List<Question> mQuestionList;
     private int mNextQuestionIndex;
 
-
     public QuestionBank(List<Question> questionList) {
         mQuestionList = questionList;
 
