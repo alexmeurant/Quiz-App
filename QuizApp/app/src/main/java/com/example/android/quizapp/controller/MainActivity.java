@@ -1,6 +1,7 @@
 package com.example.android.quizapp.controller;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,11 +18,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int GAME_ACTIVITY_REQUEST_CODE = 1;
 
+    private SharedPreferences mPreferences;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (GAME_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
             // Fetch the score from the Intent
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
+
+            // Save score:
+            mPreferences.edit().putInt("score", score).apply();
         }
     }
 
@@ -29,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Access to player preferences:
+        mPreferences = getPreferences(MODE_PRIVATE);
 
         // Declare member variables and connect to xml views:
         TextView mWelcomeTextView = (TextView) findViewById(R.id.WelcomeTextView);
@@ -65,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
 
                 String userName = mNameInput.getText().toString();
                 mUser.setUserName(userName);
+
+                // Save User Name:
+                mPreferences.edit().putString("UserName", mUser.getUserName()).apply();
             }
         });
     }
