@@ -15,6 +15,16 @@ import com.example.android.quizapp.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int GAME_ACTIVITY_REQUEST_CODE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (GAME_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
+            // Fetch the score from the Intent
+            int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
-                startActivity(gameActivityIntent);
+                startActivityForResult(gameActivityIntent, GAME_ACTIVITY_REQUEST_CODE);
 
                 String userName = mNameInput.getText().toString();
                 mUser.setUserName(userName);
