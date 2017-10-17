@@ -1,6 +1,7 @@
 package com.example.android.quizapp.controller;
 
 import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Question mCurrentQuestion;
 
     private int mNumberOfQuestions;
+    private int mScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mQuestionBank = this.generateQuestions();
 
         mNumberOfQuestions = 9;
+        mScore = 0;
 
         // Wire widgets
         mQuestionView = (TextView) findViewById(R.id.QuestionView);
@@ -75,6 +78,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // Check correct or wrong answer:
         if (responseIndex == goodAnswer) {
             Toast.makeText(GameActivity.this, "Correct", Toast.LENGTH_SHORT).show();
+            mScore++;
         } else {
             Toast.makeText(GameActivity.this, "Wrong answer", Toast.LENGTH_SHORT).show();
         }
@@ -87,10 +91,25 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                     mCurrentQuestion = mQuestionBank.getQuestion();
                     displayQuestion(mCurrentQuestion);
                 } else {
-                    finish();
+                    endGame();
                 }
             }
         }, 2000);
+    }
+
+    private void endGame(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Well done!")
+                .setMessage("Your score is: " + mScore + "/9")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
+                .create()
+                .show();
     }
 
     private void displayQuestion(final Question question) {
