@@ -1,5 +1,6 @@
 package com.example.android.quizapp.controller;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -47,6 +48,16 @@ public class MainActivity extends AppCompatActivity {
         final EditText mNameInput = (EditText) findViewById(R.id.NameInput);
         final Button mPlayButton = (Button) findViewById(R.id.PlayButton);
         final User mUser = new User();
+
+        // Welcome the previous user if a game was saved:
+        if (mPreferences != null){
+            // Get and assign previous preferences:
+            String lastUserName = getPreferences(MODE_PRIVATE).getString(PREF_KEY_USERNAME, null);
+            int lastScore = getPreferences(MODE_PRIVATE).getInt(PREF_KEY_SCORE, 0);
+            // Edit welcome message with previous user preferences:
+            String previousUserWelcome = "Hi " + lastUserName + "!\nYour last score is: " + lastScore;
+            mWelcomeTextView.setText(previousUserWelcome);
+        }
 
         // Play button is not enabled till player does not write his name:
         mPlayButton.setEnabled(false);
