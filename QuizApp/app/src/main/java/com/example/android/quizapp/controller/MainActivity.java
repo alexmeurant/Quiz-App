@@ -20,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences mPreferences;
 
+    public static final String PREF_KEY_SCORE = "PREF_KEY_SCORE";
+    public static final String PREF_KEY_USERNAME = "PREF_KEY_USERNAME";
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (GAME_ACTIVITY_REQUEST_CODE == requestCode && RESULT_OK == resultCode){
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             int score = data.getIntExtra(GameActivity.BUNDLE_EXTRA_SCORE, 0);
 
             // Save score:
-            mPreferences.edit().putInt("score", score).apply();
+            mPreferences.edit().putInt(PREF_KEY_SCORE, score).apply();
         }
     }
 
@@ -76,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 mUser.setUserName(userName);
 
                 // Save User Name:
-                mPreferences.edit().putString("UserName", mUser.getUserName()).apply();
+                mPreferences.edit().putString(PREF_KEY_USERNAME, mUser.getUserName()).apply();
             }
         });
     }
